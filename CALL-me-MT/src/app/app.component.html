@@ -6,25 +6,25 @@
     <div>
       English
       <ul>
-        <li> Text 1 </li>
-        <li> Text 2 </li>
-        <li> Text 3 </li>
+        <li (click)="getText('english1.txt')"> English 1 </li>
+        <li (click)="getText('english2.txt')"> English 2 </li>
+        <li (click)="getText('english3.txt')"> English 3 </li>
       </ul>
     </div>
     <div>
       French
       <ul>
-        <li> Text 1 </li>
-        <li> Text 2 </li>
-        <li> Text 3 </li>
+        <li (click)="getText('french1.txt')"> French 1 </li>
+        <li (click)="getText('french2.txt')"> French 2 </li>
+        <li (click)="getText('french3.txt')"> French 3 </li>
       </ul>
     </div>
     <div>
       Spanish
       <ul>
-        <li> Text 1 </li>
-        <li> Text 2 </li>
-        <li> Text 3 </li>
+        <li (click)="getText('spanish1.txt')"> Spanish 1 </li>
+        <li (click)="getText('spanish2.txt')"> Spanish 2 </li>
+        <li (click)="getText('spanish3.txt')"> Spanish 3 </li>
       </ul>
     </div>
     <div>
@@ -38,30 +38,7 @@
   </div>
 
   <div class="textContainer">
-    <textarea id="readingMaterial" name="displayText" class="textBox" withspellcheck="false" disabled>
-      Ma chère cousine,
-
-Les collégiens sont rentrés à l'école, les baigneurs de Dieppe et les joueurs de Bade sont rentrés à Paris. La foule commence à rentrer dans les théâtres; les jeunes magistrats au menton bien rasé arrondissent en périodes savantes leur discours de rentrée. La vieille pièce de cent sous, qu'on disait partie pour les Indes, est rentrée dans la circulation. Charles Jud résiste seul à l'entraînement de cette rentrée générale. Quant à moi, j'ai senti comme une tentation invincible de reprendre nos causeries d'autrefois, et me voici en plein journal, entre mon ami Sauvestre et mon ami Sarcey, étonné et content de me retrouver devant toi et avec eux, mais absolument incapable de dire pourquoi ni par où je suis rentré.
-
-Pourquoi? Sans doute parce qu'un malaise secret nous ramène au journal dès que nous essayons de nous en éloigner. C'est un manque, un vide, une lassitude de ne rien faire. On a beau se créer d'autres occupations; rien ne remplace cette conversation périodique avec la foule. De tous les besoins artificiels que l'homme se donne ici-bas, le plus impérieux est le besoin d'écrire à jour fixe.
-
-Est-ce à dire que nos mains soient toujours pleines de vérités? Avons-nous dans le cœur ou dans l'imagination une pléthore d'idées et de sentiments qui demandent à se répandre? Est-ce la haine de ceci ou l'amour de cela qui nous excite et nous tourmente? Rarement. Il est bien vrai que chacun de nous a ses affections et ses antipathies; nous aimerions à persuader quelque chose à ceux qui nous lisent; il nous serait agréable de convertir tous les hommes à la justice et à la liberté. Mais nous écrivons surtout pour le plaisir d'écrire; nous sommes des égoïstes de bonne foi; la satisfaction de nous entendre prêcher nous est plus chère que le salut de nos ouailles. On dit que l'espèce humaine s'éteindrait en un rien de temps si la nature n'avait pas pris soin d'attacher un plaisir aux actes de reproduction. M'est avis que le dernier journal aurait bientôt fermé sa boutique si les journalistes n'écrivaient que par intérêt ou par devoir.
-
-Regarde les débutants, les conscrits du journalisme; des enfants qui sortent du collége, ou qui n'en sont pas même sortis! Est-ce pour éclairer leurs contemporains qu'ils trempent leur plume et leurs doigts dans une écritoire? Eh! pauvres innocents! ils n'ont pas encore appris à penser. Est-ce un mobile d'intérêt privé qui les excite? Mais ils se ruinent à publier leur prose dans quelques petits journaux sans lecteurs! Rien ne les décourage; ils vont droit devant eux sans savoir le chemin, sans voir un but à l'horizon, emportés, incertains, trébuchant, tombant, se relevant et courant de plus belle; ivres du vin de la jeunesse! C'est la critique qui les attire: on leur a dit en classe que la critique est aisée, et ils le croient. De quel cœur ils attaquent les géants de la politique et de la poésie! «Ah! tu te crois plus fort que nous, parce que tu t'appelles Guizot, Hugo, Lamartine! Ah! Goliath, l'ombre de ton grand corps nous cache le soleil! Attends que j'aille chercher ma fronde!»
-
-Je me rappelle le temps où M. Scribe, un grand poëte dramatique, était la cible de tous les apprentis journalistes. M. Scribe n'est plus; mais les cibles ne manquent pas, et nos jeunes journalistes ne laissent point chômer le tir national. Ils visent à droite, à gauche, partout, sur les statues de marbre et les poupées de plâtre. Heureux âge! On se sert de son premier journal comme de son premier fusil. N'as-tu jamais rencontré, ma cousine, un garçonnet de douze ans à qui l'on vient de donner un fusil pour ses étrennes? Il a de la poudre, il a du plomb, il a des capsules; l'univers est à lui! Aucune force humaine ne saurait le retenir; il court les champs, les jardins, la maison même: avec son fusil neuf. Il s'enivre du bruit des explosions, de l'odeur de la poudre et de la joie de détruire. Il tire sur les moineaux, sur les écureuils, sur les pigeons, sur les poulets, sur le chat de la maison, sur papa ou maman, s'il ne rencontre pas d'autre proie.
-
-Nous avons tous passé par là, et ce temps d'absurdité naïve n'est pas celui que nous regrettons le moins. Mais il vient un moment où l'on prend le journal en grippe. On s'aperçoit qu'on a perdu beaucoup de temps sans profit et joué le rôle de niais. On a travaillé dix ans et écrit toute sorte de jolies choses dont il ne reste rien. Discussions animées, articles de fond, variétés savantes, feuilletons pleins de sel, entre-filets piquants, paradoxes ingénieux, tout a passé, tout est évanoui, flétri, fondu; le travail de dix années n'a pas laissé plus de vestiges que les neiges d'antan. Si du moins on avait fait fortune! Mais non: le journal nourrit quelquefois son homme, il ne l'enrichit jamais. «Ainsi donc, se dit-on avec une mélancolie profonde, j'ai gaspillé le meilleur de ma vie pour l'amusement de quelques désœuvrés! J'ai fondé la prospérité de plusieurs journaux, et je suis pauvre! J'ai distribué l'éloge à une multitude d'auteurs, d'acteurs, d'éditeurs, de directeurs qui ont des hôtels à Paris ou des châteaux à la campagne, et je tremble tous les trois mois devant le terme à payer! J'ai bâti des réputations, personne ne m'a rendu la pareille; j'ai fait des hommes célèbres, et je ne suis qu'un homme connu. Cependant tous ces gens-là sont mes justiciables et je les vaux bien. Que de romans, que de comédies on aurait pu faire avec l'esprit que j'ai dépensé! Un vaudeville ne prend guère plus de temps que deux feuilletons, et rapporte cent fois davantage! Vingt articles de journal représentent la matière d'un roman en un volume, et coûtent dix fois plus de travail, car chaque article est une charpente, une composition, un tout à créer! Pourquoi m'obstinerais-je dans une voie qui conduit les gens à l'hôpital? Écrivons des romans! Abordons le théâtre.»
-
-Il y a beaucoup de vrai dans ces doléances. Le journalisme est un métier ingrat, excepté pour les malhonnêtes gens, qui y sont, Dieu merci! en très-grande minorité. Mieux vaut cent fois écrire des romans qui s'impriment, se réimpriment et finissent par payer des rentes à l'auteur. Le théâtre a des profits moins certains, mais quelquefois énormes. Heureux celui qui, le matin, en ouvrant les yeux et l'Entr'acte, voit que les comédiens de deux ou trois théâtres de Paris s'époumoneront toute la soirée à lui gagner de l'argent! Il peut aller, venir, visiter le musée de Cluny ou l'aquarium du Jardin d'acclimatation, faire des armes chez Pons ou échanger des coups de poing chez Lecour, dîner à la Maison d'or ou dans la taverne de Peter; ses intérêts sont en lieu sûr. Deux ou trois artistes de premier ordre, madame Viardot ou madame Plessy, Got ou Paulin Ménier, Lafont ou Geoffroy prendront soin de ses affaires et battront monnaie à son effigie, entre neuf heures et minuit.
-
-Voilà pourquoi les journalistes, après quelques années de stage, s'aventurent dans le roman ou dans le théâtre. Je ne parle point de ceux qui entrent à la Bourse: ils ont abdiqué. Mais comment se fait-il qu'un romancier très-lu, un dramaturge applaudi, revienne à son journal comme le Savoyard à sa montagne? Pourquoi des hommes politiques arrivés et enrichis, comme M. de Girardin ou M. le docteur Véron, se laissent-ils ramener de temps à autre sur le terrain de leurs combats et de leurs misères? C'est que les métiers et les sols les plus ingrats sont ceux qui nous laissent le souvenir le plus attachant. Le journalisme a des amertumes enivrantes comme le café, l'opium et le haschisch. On y goûte, on le maudit, et l'on y veut goûter encore.
-
-Sans doute il est stupide de dépenser son esprit au jour le jour, pour l'ébattement de quelques lecteurs inoccupés; mais qu'il est doux de servir au public ses idées toutes chaudes, comme les petits pâtés sortant du four! Un roman chemine à petits pas; il attend six mois dans les cartons de la librairie. Imprimé, il se disperse aux quatre points cardinaux; la France et l'étranger le lisent ou ne le lisent point, les critiques le goûtent ou le méprisent; c'est une question qui se décide lentement et qui n'est jamais bien résolue, par ce temps de camaraderies faciles et de jalousies féroces.
-
-Une comédie monte aux nues ou tombe à cent mètres au-dessous du niveau de la rampe. Mais il faut quelquefois des années pour atteindre à ce résultat heureux ou triste; tandis que l'article de journal, écrit à deux heures, s'imprime à trois, se distribue à quatre, se lit à cinq! L'auteur sort de chez lui, gagne le boulevard, et tombe au milieu d'un aréopage ambulant qui le lit et le juge, l'applaudit ou le siffle. C'est un succès argent comptant, si toutefois c'est un succès.
-
-L'action du journal sur les personnes est immédiate, presque foudroyante. Lundi dernier, par exemple, le Constitutionnel a publié deux articles remarquables. L'un était de M. Sainte-Beuve, sur M. Guizot; l'autre de M. Fiorentino, sur mademoiselle Nelly. M. Sainte-Beuve a désigné, avec la finesse d'un écrivain de génie, certains côtés faibles de son illustre confrère. M. Fiorentino a célébré, dans un style lyrique, les perfections d'une comédienne hors ligne, qui chante un joli couplet et enfourche un beau cheval dans la féerie du Pied de Mouton. Suppose que mardi soir M. Guizot ait rencontré M. Sainte-Beuve et qu'un hasard parallèle ait mis mademoiselle Nelly en présence de M. Fiorentino. Crois-tu que M. Guizot, de l'Académie française, et mademoiselle Nelly, de la Porte-Saint-Martin, auraient abordé du même front leurs critiques respectifs? Non, sans doute. M. Guizot aurait fait la grimace, et mademoiselle Nelly aurait souri de ses trente-deux dents. Car il est certain que le Constitutionnel de lundi dernier a placé mademoiselle Nelly fort au-dessus de M. Guizot. Si telle était l'intention de l'honorable rédacteur en chef, il a atteint son but et remis chaque personne à sa place. Il a prouvé à la famille d'Orléans que, si Louis-Philippe avait eu mademoiselle Nelly pour président du cabinet, mademoiselle Nelly serait montée à cheval le 24 février 1848; ce qui aurait sauvé la monarchie constitutionnelle.
+    <textarea id="textContent" name="displayText" class="textBox" withspellcheck="false" disabled>
     </textarea>
   </div>
 

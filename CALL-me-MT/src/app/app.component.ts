@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from './translate.service';
+import * as deepl from 'deepl-node';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -8,22 +10,23 @@ import { TranslateService } from './translate.service';
 })
 export class AppComponent {
   title = 'CALL-me-MT';
+
   
-  constructor(private ts:TranslateService){}
+  constructor(private ts:TranslateService, private http: HttpClient){}
+  
   
   ngOnInit(): void {
     
     this.ts.getUsageStats().subscribe( res => {
       console.log(res);
     });
-    
-    let textarea = <HTMLInputElement>document.getElementById("readingMaterial");
-    textarea.value = "hello"
-    
-    let spanishData = await this.http.get('../assets/spanishText.txt').toPromise()!;
+      
+    //let spanishData = this.http.get('../assets/spanishTest.txt').toPromise()!;
+    //console.log(spanishData);
+    //textarea.value = spanishData;
     
     /*
-    const myArea = <HTMLInputElement>document.getElementById("readingMaterial")
+    const myArea = <HTMLInputElement>document.getElementById("textContent")
     if(myArea) {
       myArea.value = "Hello world!"
       myArea.onclick = (e) => {
@@ -39,6 +42,13 @@ export class AppComponent {
     */
 
     
+  }
+  
+  async getText(text:string) {
+    let textarea = <HTMLInputElement>document.getElementById("textContent");
+    await this.http.get(`../assets/${text}`, {responseType: 'text' as 'json'}).subscribe((data: any) => {
+      textarea.value = data;
+    });
   }
   
   getTheWord(selectionStart:any, value:any){

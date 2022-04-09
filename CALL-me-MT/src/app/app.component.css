@@ -22,3 +22,7 @@ h1 {
   height:800px;
   padding:10px;
 }
+
+li:hover {
+  cursor:pointer;
+}
