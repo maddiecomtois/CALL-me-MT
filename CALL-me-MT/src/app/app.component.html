@@ -38,8 +38,13 @@
   </div>
 
   <div class="textContainer">
-    <textarea id="textContent" name="displayText" class="textBox" withspellcheck="false" disabled>
-    </textarea>
+    <textarea id="textContent" name="displayText" class="textBox" withspellcheck="false" disabled></textarea>
+    <button (click)="getSelectedText()"> Translate </button>
   </div>
-
+  
+  <div class="translateContainer">
+    <div class="translatedText">{{textToTranslate}}</div>
+    <div > Hola {{translatedText}}</div>
+  </div>
+  
 </div>

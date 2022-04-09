@@ -10,6 +10,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'CALL-me-MT';
+  textArea:any;
+  textToTranslate:string = '';
+  translatedText:string = '';
 
   
   constructor(private ts:TranslateService, private http: HttpClient){}
@@ -17,37 +20,27 @@ export class AppComponent {
   
   ngOnInit(): void {
     
+    this.textArea = <HTMLInputElement>document.getElementById("textContent");
+    
     this.ts.getUsageStats().subscribe( res => {
       console.log(res);
     });
-      
-    //let spanishData = this.http.get('../assets/spanishTest.txt').toPromise()!;
-    //console.log(spanishData);
-    //textarea.value = spanishData;
     
-    /*
-    const myArea = <HTMLInputElement>document.getElementById("textContent")
-    if(myArea) {
-      myArea.value = "Hello world!"
-      myArea.onclick = (e) => {
-        if(e.currentTarget) {
-          let i = e.currentTarget.selectionStart
-          console.log(this.getTheWord(i, myArea.value))
-          
-        }
-      
-      }
-      
-    }
-    */
-
+    this.getText('english1.txt');
     
   }
   
+  getSelectedText(){
+    let text = this.textArea.value;
+    let indexStart = this.textArea.selectionStart!;
+    let indexEnd = this.textArea.selectionEnd!;
+    this.textToTranslate = text.substring(indexStart, indexEnd);
+  }
+  
+  
   async getText(text:string) {
-    let textarea = <HTMLInputElement>document.getElementById("textContent");
     await this.http.get(`../assets/${text}`, {responseType: 'text' as 'json'}).subscribe((data: any) => {
-      textarea.value = data;
+      this.textArea.value = data;
     });
   }
   

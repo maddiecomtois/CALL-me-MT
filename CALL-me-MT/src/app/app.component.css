@@ -13,7 +13,7 @@ h1 {
 }
 
 .textContainer {
-  width:70%;
+  width:50%;
   height:auto;
 }
 
@@ -25,4 +25,20 @@ h1 {
 
 li:hover {
   cursor:pointer;
+}
+
+.translateContainer {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left:50px;
+  height:500px;
+  width:500px;
+  border: 2px solid grey;
+  border-radius: 5px;
+}
+
+.translatedText {
+  border-bottom-style: solid;
+  height:50%;
 }
