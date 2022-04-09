@@ -1,0 +1,24 @@
+h1 {
+  text-align: center;
+}
+
+.contentContainer {
+  display:flex;
+  padding-left:10px;
+  height:100%;
+}
+
+.languageContainer {
+  padding-right: 10%;
+}
+
+.textContainer {
+  width:70%;
+  height:auto;
+}
+
+.textBox {
+  width:100%;
+  height:800px;
+  padding:10px;
+}
