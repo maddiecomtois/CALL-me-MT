@@ -30,20 +30,28 @@ export class AppComponent {
     
   }
   
-  getSelectedText(){
-    let text = this.textArea.value;
-    let indexStart = this.textArea.selectionStart!;
-    let indexEnd = this.textArea.selectionEnd!;
-    this.textToTranslate = text.substring(indexStart, indexEnd);
-  }
-  
-  
   async getText(text:string) {
     await this.http.get(`../assets/${text}`, {responseType: 'text' as 'json'}).subscribe((data: any) => {
       this.textArea.value = data;
     });
   }
   
+  getSelectedText(){
+    let text = this.textArea.value;
+    let indexStart = this.textArea.selectionStart!;
+    let indexEnd = this.textArea.selectionEnd!;
+    this.textToTranslate = text.substring(indexStart, indexEnd);
+    this.translateText()
+  }
+  
+  translateText() {
+    this.ts.translate(this.textToTranslate).subscribe( res => {
+      console.log(res.translations);
+      this.translatedText = res.translations[0].text;
+    });
+  }
+  
+
   getTheWord(selectionStart:any, value:any){
     let arr = value.split(" ");
     let sum = 0
@@ -54,7 +62,4 @@ export class AppComponent {
     }
   }
 
-
-  
-  
 }
