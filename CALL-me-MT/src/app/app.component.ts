@@ -37,10 +37,11 @@ export class AppComponent {
   }
   
   getSelectedText(){
-    let text = this.textArea.value;
+    let text:string = this.textArea.value;
     let indexStart = this.textArea.selectionStart!;
     let indexEnd = this.textArea.selectionEnd!;
     this.textToTranslate = text.substring(indexStart, indexEnd);
+    this.textToTranslate = this.textToTranslate.replace(/['“”]+/g, '');
     this.translateText()
   }
   
