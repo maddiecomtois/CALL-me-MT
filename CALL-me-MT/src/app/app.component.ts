@@ -41,7 +41,7 @@ export class AppComponent {
     let indexStart = this.textArea.selectionStart!;
     let indexEnd = this.textArea.selectionEnd!;
     this.textToTranslate = text.substring(indexStart, indexEnd);
-    this.textToTranslate = this.textToTranslate.replace(/['“”]+/g, '');
+    this.textToTranslate = this.textToTranslate.replace(/[“”«»]+/g, '');
     this.translateText()
   }
   
@@ -49,7 +49,11 @@ export class AppComponent {
     this.ts.translate(this.textToTranslate).subscribe( res => {
       console.log(res.translations);
       this.translatedText = res.translations[0].text;
-    });
+    },
+    err => {
+          console.log(err.message)
+        },
+    );
   }
   
 
