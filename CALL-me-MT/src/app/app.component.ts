@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from './translate.service';
 import * as deepl from 'deepl-node';
 import { HttpClient } from '@angular/common/http';
+import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -13,27 +14,53 @@ export class AppComponent {
   textArea:any;
   textToTranslate:string = '';
   translatedText:string = '';
+  deeplPercentageLeft:number = 0;
+  targetLang:string = '';
 
   
   constructor(private ts:TranslateService, private http: HttpClient){}
   
   
   ngOnInit(): void {
-    
+    this.getUsageStats();
     this.textArea = <HTMLInputElement>document.getElementById("textContent");
+    this.getText('english1.txt', 'FR');
     
-    this.ts.getUsageStats().subscribe( res => {
-      console.log(res);
-    });
+    // create dropdown menu for story selection
+    let dropdown = document.getElementsByClassName("dropdown-btn") as HTMLCollectionOf<HTMLElement>;
+    /*
+    for (let i = 0; i < dropdown.length; i++) {
+      dropdown[i].addEventListener("click", () => {
+        dropdown[i].ontoggle("active");
+        let dropdownContent = dropdown[i].nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        } else {
+          dropdownContent.style.display = "block";
+        }
+      });
+    }
+    */
     
-    this.getText('english1.txt');
+    
     
   }
   
-  async getText(text:string) {
+  getUsageStats() {
+    this.ts.getUsageStats().subscribe( res => {
+      let character_used = res.data.character_count
+      let character_limit = res.data.character_limit
+      this.deeplPercentageLeft = 100 - ((res.data.character_count / res.data.character_limit) * 100)
+    });
+    
+  }
+  
+  async getText(text:string, langCode:string) {
     await this.http.get(`../assets/${text}`, {responseType: 'text' as 'json'}).subscribe((data: any) => {
       this.textArea.value = data;
     });
+    this.targetLang = langCode;
+    
   }
   
   getSelectedText(){
@@ -46,7 +73,8 @@ export class AppComponent {
   }
   
   translateText() {
-    this.ts.translate(this.textToTranslate).subscribe( res => {
+    this.translatedText = "";
+    this.ts.translate(this.textToTranslate, this.targetLang).subscribe( res => {
       console.log(res.translations);
       this.translatedText = res.translations[0].text;
     },
@@ -54,6 +82,7 @@ export class AppComponent {
           console.log(err.message)
         },
     );
+    this.getUsageStats();
   }
   
 

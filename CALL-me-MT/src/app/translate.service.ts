@@ -13,9 +13,10 @@ export class TranslateService {
     return this.http.get('http://localhost:8000/getDeepLUsageStats')
   }
   
-  translate(text:string):Observable<any> {
+  translate(text:string, targetLang:string):Observable<any> {
     console.log("Text to translate: ", text);
-    return this.http.post('http://localhost:8000/translate', {textToTranslate:text})
+    console.log("Target language: ", targetLang)
+    return this.http.post('http://localhost:8000/translate', {textToTranslate:text, targetLanguage:targetLang})
   }
   
 }
