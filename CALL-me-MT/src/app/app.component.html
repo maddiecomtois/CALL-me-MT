@@ -1,5 +1,5 @@
 <h1> CALL-me MT </h1>
-<div> {{deeplPercentageLeft}} % </div>
+<div> {{deeplPercentageLeft}} % of credit left </div>
 
 <div class="contentContainer">
 
@@ -24,7 +24,7 @@
     
 
     
-    <!--
+    
     <div>
       English
       <ul>
@@ -57,7 +57,7 @@
         <li (click)="getText('german3.txt', 'EN-GB')"> Effi Briest </li>
       </ul>
     </div>
-    -->
+    
     <!--
     <mat-sidenav-container class="example-container" autosize>
 	<mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
@@ -97,15 +97,27 @@
     
   </div>
 
-  <div class="textContainer">
-    <textarea id="textContent" name="displayText" class="textBox" withspellcheck="false" disabled></textarea>
-    <button (click)="getSelectedText()"> Translate </button>
+  <div class="textContainer" (mouseup)="getSelectedText()">
+    <!--Text-->
+    <!--<p id="textContent" class="textBox"> </p>-->
+    <div class="test">
+    <p class= "textBox" *ngFor="let paragraph of textParagraphs"> {{paragraph}} </p>
+    </div>
+    
+    <!-- Translation popover -->
+    <div class="popoverContainer" [style.display]="popoverVisibility">
+      <div class="popover"> {{translatedText}} </div>
+      <div id="arrow" data-popper-arrow></div>
+    </div>
+    <!--<button (click)="getSelectedText()"> Translate </button>-->
   </div>
   
+  <!--
   <div class="translateContainer">
     <div class="translatedText">{{textToTranslate}}</div>
     <div > {{translatedText}}</div>
   </div>
+  -->
 
   
 </div>

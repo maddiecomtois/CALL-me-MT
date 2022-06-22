@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [

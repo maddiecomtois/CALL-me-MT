@@ -3,6 +3,9 @@ import { TranslateService } from './translate.service';
 import * as deepl from 'deepl-node';
 import { HttpClient } from '@angular/common/http';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { map } from 'rxjs/operators'
+
+import * as Popper from '@popperjs/core'
 
 @Component({
   selector: 'app-root',
@@ -11,11 +14,15 @@ import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AppComponent {
   title = 'CALL-me-MT';
-  textArea:any;
+  textContent:any;
+  textParagraphs:string[];
   textToTranslate:string = '';
   translatedText:string = '';
   deeplPercentageLeft:number = 0;
   targetLang:string = '';
+  
+  translationPopover:any;
+  popoverVisibility:string = "none"
 
   
   constructor(private ts:TranslateService, private http: HttpClient){}
@@ -23,31 +30,14 @@ export class AppComponent {
   
   ngOnInit(): void {
     this.getUsageStats();
-    this.textArea = <HTMLInputElement>document.getElementById("textContent");
+    this.textContent = <HTMLInputElement>document.getElementById("textContent");
     this.getText('english1.txt', 'FR');
-    
-    // create dropdown menu for story selection
-    let dropdown = document.getElementsByClassName("dropdown-btn") as HTMLCollectionOf<HTMLElement>;
-    /*
-    for (let i = 0; i < dropdown.length; i++) {
-      dropdown[i].addEventListener("click", () => {
-        dropdown[i].ontoggle("active");
-        let dropdownContent = dropdown[i].nextElementSibling;
-        if (dropdownContent.style.display === "block") {
-          dropdownContent.style.display = "none";
-        } else {
-          dropdownContent.style.display = "block";
-        }
-      });
-    }
-    */
-    
-    
-    
+      
   }
   
   getUsageStats() {
     this.ts.getUsageStats().subscribe( res => {
+      console.log(res)
       let character_used = res.data.character_count
       let character_limit = res.data.character_limit
       this.deeplPercentageLeft = 100 - ((res.data.character_count / res.data.character_limit) * 100)
@@ -57,19 +47,38 @@ export class AppComponent {
   
   async getText(text:string, langCode:string) {
     await this.http.get(`../assets/${text}`, {responseType: 'text' as 'json'}).subscribe((data: any) => {
-      this.textArea.value = data;
+      //this.textParagraphs = data.split(/(?:\r?\n)+/);
+      this.textParagraphs = data.split('\n');
+      //this.textContent.innerHTML = data;
     });
     this.targetLang = langCode;
     
   }
   
   getSelectedText(){
-    let text:string = this.textArea.value;
-    let indexStart = this.textArea.selectionStart!;
-    let indexEnd = this.textArea.selectionEnd!;
-    this.textToTranslate = text.substring(indexStart, indexEnd);
-    this.textToTranslate = this.textToTranslate.replace(/[“”«»]+/g, '');
-    this.translateText()
+    //let text:string = this.textContent.innerHTML;
+    //let indexStart = this.textContent.selectionStart!;
+    //let indexEnd = this.textContent.selectionEnd!;
+    //this.textToTranslate = text.substring(indexStart, indexEnd);
+    //this.textToTranslate = this.textToTranslate.replace(/[“”«»]+/g, '');
+    
+    if (window.getSelection) {
+        // get selected text
+        this.textToTranslate = window.getSelection().toString();
+        this.textToTranslate = this.textToTranslate.replace(/[“”«»]+/g, '');
+        console.log(this.textToTranslate);
+
+        // display translated text or hide if no text selected
+        if (this.textToTranslate != "") {
+          //this.translateText()
+          this.translatedText = "Some translation"
+          this.popoverVisibility = "block";
+          this.displayTranslation()
+        }
+        else {
+          this.popoverVisibility = "none";
+        }
+      }
   }
   
   translateText() {
@@ -85,7 +94,26 @@ export class AppComponent {
     this.getUsageStats();
   }
   
+  displayTranslation() {
 
+    let selection = window.getSelection().getRangeAt(0);
+    this.translationPopover = document.querySelector('.popoverContainer'); 
+    
+    Popper.createPopper(selection, this.translationPopover, {
+        placement: 'top',
+        modifiers: [
+          {
+            name: 'offset',
+            options: {
+              offset: [0, 8],
+            },
+          },
+        ]
+    });
+    
+  }
+  
+/*
   getTheWord(selectionStart:any, value:any){
     let arr = value.split(" ");
     let sum = 0
@@ -95,5 +123,6 @@ export class AppComponent {
 
     }
   }
+  */
 
 }
