@@ -70,7 +70,7 @@ export class AppComponent {
 
         // display translated text or hide if no text selected
         if (this.textToTranslate != "") {
-          //this.translateText()
+          this.translateText()
           this.translatedText = "Some translation"
           this.popoverVisibility = "block";
           this.displayTranslation()
@@ -83,7 +83,7 @@ export class AppComponent {
   
   translateText() {
     this.translatedText = "";
-    this.ts.translate(this.textToTranslate, this.targetLang).subscribe( res => {
+    this.ts.translateMicrosoft(this.textToTranslate, this.targetLang).subscribe( res => {
       console.log(res.translations);
       this.translatedText = res.translations[0].text;
     },

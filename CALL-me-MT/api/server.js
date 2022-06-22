@@ -4,12 +4,16 @@ const cors = require('cors');
 const https = require('https')
 const request = require('request');
 const querystring = require('querystring');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express()
 const port = 8000
 
 app.use(bodyParser.json());
 app.use(cors());
+
+let key = "15a71e29429546aab3533e645fb85c38";
+let endpoint = "https://api.cognitive.microsofttranslator.com";
 
 app.listen(port, () => {
   console.log(`Server started! Listening on port ${port}`)
@@ -61,6 +65,42 @@ app.post("/translate", function (req, res) {
     }
     if(body) {
       res.json(JSON.parse(body));
+    } else {
+      res.json(err);
+    }
+  });
+});
+
+/* Translate text using Microsoft Translator API */
+app.post("/translateMicrosoft", function (req, res) {  
+  let options = {
+      method: 'POST',
+      baseUrl: 'https://api.cognitive.microsofttranslator.com',
+      url: 'translate',
+      qs: {
+        'api-version': '3.0',
+        'to': [req.body.targetLanguage]
+      },
+      headers: {
+        'Ocp-Apim-Subscription-Key': '15a71e29429546aab3533e645fb85c38',
+        'Ocp-Apim-Subscription-Region': 'westeurope',
+        'Content-type': 'application/json',
+        'X-ClientTraceId': uuidv4().toString()
+      },
+      body: [{
+            'text': req.body.textToTranslate
+      }],
+      json: true,
+  };
+  
+  request(options, function (err, resp, body) {
+    if(err){ 
+      console.log(err)
+      res.send(err);
+    }
+    if(body) {
+      console.log(JSON.stringify(body, null, 4));
+      res.json(JSON.stringify(body, null, 4));
     } else {
       res.json(err);
     }
