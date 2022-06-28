@@ -84,8 +84,8 @@ export class AppComponent {
   translateText() {
     this.translatedText = "";
     this.ts.translateMicrosoft(this.textToTranslate, this.targetLang).subscribe( res => {
-      console.log(res.translations);
-      this.translatedText = res.translations[0].text;
+      console.log(res)
+      this.translatedText = res;
     },
     err => {
           console.log(err.message)

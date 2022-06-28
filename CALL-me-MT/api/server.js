@@ -35,7 +35,7 @@ app.get("/getDeepLUsageStats", function (req, res) {
 });
 
 /* Translate text using Deepl API */
-app.post("/translate", function (req, res) {
+app.post("/translateDeepl", function (req, res) {
   let textToTranslate = req.body.textToTranslate;
   console.log(textToTranslate);
   const url = 'https://api-free.deepl.com/v2/translate?auth_key=a39ddacd-0d09-96eb-d7a1-e92a670fcd32:fx&'
@@ -64,7 +64,8 @@ app.post("/translate", function (req, res) {
       res.send(err);
     }
     if(body) {
-      res.json(JSON.parse(body));
+      let translation = body[0]["translation"]
+      res.json(translation);
     } else {
       res.json(err);
     }
@@ -99,8 +100,8 @@ app.post("/translateMicrosoft", function (req, res) {
       res.send(err);
     }
     if(body) {
-      console.log(JSON.stringify(body, null, 4));
-      res.json(JSON.stringify(body, null, 4));
+      let translation = body[0]["translations"][0]["text"];
+      res.json(translation);
     } else {
       res.json(err);
     }

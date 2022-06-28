@@ -16,7 +16,7 @@ export class TranslateService {
   translate(text:string, targetLang:string):Observable<any> {
     console.log("Text to translate: ", text);
     console.log("Target language: ", targetLang)
-    return this.http.post('http://localhost:8000/translate', {textToTranslate:text, targetLanguage:targetLang})
+    return this.http.post('http://localhost:8000/translateDeepl', {textToTranslate:text, targetLanguage:targetLang})
   }
   
   translateMicrosoft(text:string, targetLang:string):Observable<any> {
