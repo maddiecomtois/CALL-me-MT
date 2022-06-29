@@ -6,6 +6,8 @@ import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs/operators'
 
 import * as Popper from '@popperjs/core'
+import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow.js';
+import flip from '@popperjs/core/lib/modifiers/flip.js';
 
 @Component({
   selector: 'app-root',
@@ -71,7 +73,6 @@ export class AppComponent {
         // display translated text or hide if no text selected
         if (this.textToTranslate != "") {
           this.translateText()
-          this.translatedText = "Some translation"
           this.popoverVisibility = "block";
           this.displayTranslation()
         }
@@ -95,7 +96,6 @@ export class AppComponent {
   }
   
   displayTranslation() {
-
     let selection = window.getSelection().getRangeAt(0);
     this.translationPopover = document.querySelector('.popoverContainer'); 
     
@@ -108,6 +108,8 @@ export class AppComponent {
               offset: [0, 8],
             },
           },
+          preventOverflow,
+          flip
         ]
     });
     

@@ -115,6 +115,10 @@ li:hover {
   .sidenav a {font-size: 18px;}
 }
 
+.popoverContainer {
+  
+}
+
 .popover {
         background: #333;
         color: white;
@@ -124,6 +128,7 @@ li:hover {
         border-radius: 4px;
 }
 
+/*
 #arrow,
 #arrow::before {
   position: absolute;
@@ -158,3 +163,4 @@ li:hover {
 .popover[data-popper-placement^='right'] > #arrow {
   left: -4px;
 }
+*/
