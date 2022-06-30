@@ -15,62 +15,17 @@ const port = 8000
 app.use(bodyParser.json());
 app.use(cors());
 
+// Microsoft credentials
 let key = "15a71e29429546aab3533e645fb85c38";
 let endpoint = "https://api.cognitive.microsofttranslator.com";
 
-// Instantiates a client for Google Translate
-//const translationClient = new TranslationServiceClient();
+
+// Google credentials
 const CREDENTIALS = JSON.parse(process.env.CREDENTIALS)
-
-
 const translate = new Translate({
   credentials: CREDENTIALS,
   projectId: CREDENTIALS.project_id
 })
-
-/*
-const projectId = 'call-me-mt';
-const location = 'global';
-const text = 'Hello, world!';
-
-async function translateText() {
-    // Construct request
-    const request = {
-        parent: `projects/${projectId}/locations/${location}`,
-        contents: [text],
-        mimeType: 'text/plain', // mime types: text/plain, text/html
-        sourceLanguageCode: 'en',
-        targetLanguageCode: 'es',
-    };
-
-    // Run request
-    const [response] = await translationClient.translateText(request);
-
-    for (const translation of response.translations) {
-        console.log(`Translation: ${translation.translatedText}`);
-    }
-}
-
-translateText()
-*/
-
-
-const test = async (text, targetLanguage) => {
-  try {
-    let [response] = await translate.translate(text, targetLanguage);
-    return response;
-  } catch (error) {
-    console.log(`Error at translateText --> ${error}`);
-    return 0;
-  }
-}
-/*
-test("hola", "es").then((res) => {
-  console.log(res);
-}).catch((err) => {
-  console.log(err);
-})
-*/
 
 app.listen(port, () => {
   console.log(`Server started! Listening on port ${port}`)
@@ -165,12 +120,25 @@ app.post("/translateMicrosoft", function (req, res) {
   });
 });
 
+
+/* Translate text using Google Translate API */
 app.post("/translateGoogle", function(req, res) {
-  test("hola mundo", "en").then((res) => {
-    console.log(res);
+  translateGoogle(req.body.textToTranslate, req.body.targetLanguage).then((translation) => {
+    res.json(translation)
   }).catch((err) => {
     console.log(err);
   })
   
 });
+
+// Async function to call google translate
+const translateGoogle = async (text, targetLanguage) => {
+  try {
+    let [response] = await translate.translate(text, targetLanguage);
+    return response;
+  } catch (error) {
+    console.log(`Google Translate Error --> ${error}`);
+    return 0;
+  }
+}
 
