@@ -25,4 +25,10 @@ export class TranslateService {
     return this.http.post('http://localhost:8000/translateMicrosoft', {textToTranslate:text, targetLanguage:targetLang})
   }
   
+  translateGoogle(text:string, targetLang:string):Observable<any> {
+    console.log("Text to translate: ", text);
+    console.log("Target language: ", targetLang)
+    return this.http.post('http://localhost:8000/translateGoogle', {textToTranslate:text, targetLanguage:targetLang})
+  }
+  
 }

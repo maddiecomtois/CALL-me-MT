@@ -34,12 +34,14 @@ def translateMicrosoft(sourceText):
 
 
 def translateDeepl(sourceText):
+    request = requests.post("https://api-free.deepl.com/v2/usage?auth_key=a39ddacd-0d09-96eb-d7a1-e92a670fcd32:fx")
+    print(request.json())
 
 
 def readInText():
     wordsToTranslate = []
     with open("text-data/newstest2021.en-de.src.en", "r") as ofh:
-        for i in range(5):
+        for i in range(20):
             line = ofh.readline()
             print(line)
             wordsToTranslate.append(line)
@@ -47,15 +49,14 @@ def readInText():
     return wordsToTranslate
 
 
-def createDataFrame(translationPairs):
+def createDataFrame(translationPairs, filename):
     df = pd.DataFrame(translationPairs)
     print(df)
-    df.to_csv('dataFrames/EnglishToFrench.csv')
+    df.to_csv(filename)
 
 
-def translateSentences():
+def translate(wordsToTranslate, dataFrameFileName):
     dicts = []
-    wordsToTranslate = readInText()
 
     for word in wordsToTranslate:
         newDict = {"text": word}
@@ -72,14 +73,16 @@ def translateSentences():
         }
         translationPairs.append(pair)
 
-    createDataFrame(translationPairs)
+    createDataFrame(translationPairs, dataFrameFileName)
+    print(translationPairs)
 
-
-def translateWord():
-    dicts = []
-    wordsToTranslate = ["face masks", "full on"]
 
 
 if __name__ == '__main__':
-    translateSentences()
+    #wordsToTranslate = readInText()
+    #translate(wordsToTranslate, 'dataFrames/EnglishToFrench.csv')
+
+    wordsToTranslate = ["face masks", "full on", "pepper-sprayed", "in tow", "random old lady", "a can of mace", "for his troubles", "crying", "told", "fresh air", "including", "mask-shaming", "bystander", "march", "clashing", "leg injury", "such as", "deploying", "worrisome to her", "it feels like"]
+    translate(wordsToTranslate, 'dataFrames/EnglishToFrenchWords.csv')
+
 
