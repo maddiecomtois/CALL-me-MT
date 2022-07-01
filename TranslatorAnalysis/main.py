@@ -103,14 +103,15 @@ def createDataFrame(translationPairs, filename):
 if __name__ == '__main__':
     ''' Read in source sentences and translate '''
     #sentencesToTranslate = readInText()
-    #translate(sentencesToTranslate, 'microsoft')
+    #translationPairs = translate(sentencesToTranslate, 'google')
+    #createDataFrame(translationPairs, 'dataFrames/EnglishToFrench-Google.csv')
 
     wordsToTranslate = ["face masks", "full on", "pepper-sprayed", "in tow", "random old lady", "a can of mace", "for his troubles", "crying", "told", "fresh air", "including", "mask-shaming", "bystander", "march", "clashing", "leg injury", "such as", "deploying", "worrisome to her", "it feels like"]
 
     ''' Translate word list using different translators '''
     #translationPairs = translate(wordsToTranslate, 'microsoft')
-    #translationPairs = translate(wordsToTranslate, 'google')
+    translationPairs = translate(wordsToTranslate, 'google')
 
     ''' Create data frames from translation pairs '''
-    #createDataFrame(translationPairs, 'dataFrames/EnglishToFrenchWords.csv')
+    createDataFrame(translationPairs, 'dataFrames/EnglishToFrenchWords-Google.csv')
 
