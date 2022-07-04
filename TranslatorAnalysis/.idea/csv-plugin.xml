@@ -3,6 +3,13 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="/dataFrames/EnglishToFrench-Deepl.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/dataFrames/EnglishToFrench-Google.csv">
           <value>
             <Attribute>
@@ -10,14 +17,14 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/dataFrames/EnglishToFrench.csv">
+        <entry key="/dataFrames/EnglishToFrenchWords-Deepl.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="/dataFrames/EnglishToFrenchWords.csv">
+        <entry key="/dataFrames/EnglishToFrenchWords-Microsoft.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
