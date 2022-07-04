@@ -1,23 +1,33 @@
-h1 {
-  text-align: center;
+.page {
+  min-height: 100vh;
+  overflow: auto;
 }
 
 .contentContainer {
   display:flex;
   padding-left:10px;
-  height:100%;
+  height:80vh;
+  padding-bottom:20px;
+  padding-top:20px;
 }
 
 .languageContainer {
   padding-right: 5%;
+  width:30%;
 }
 
 .textContainer {
-  /*width:100%;*/
-  height:800px;
-  margin-left: 170px; 
+  margin-left:10%;
+}
+
+mat-card {
+  height:100%;
   overflow-y: scroll;
-  border-bottom-style: solid;
+  padding-bottom:10px;
+}
+
+mat-toolbar {
+  background-color: #c1daee
 }
 
 .textBox {
@@ -25,14 +35,11 @@ h1 {
   padding:5px;
 }
 
-.test {
-  overflow: scroll;;
-}
 
 li:hover {
   cursor:pointer;
 }
-
+/*
 .translateContainer {
   display:flex;
   flex-direction: column;
@@ -43,6 +50,7 @@ li:hover {
   border: 2px solid grey;
   border-radius: 5px;
 }
+*/
 /*
 .translatedText {
   border-bottom-style: solid;
@@ -127,6 +135,7 @@ li:hover {
         font-size: 13px;
         border-radius: 4px;
 }
+
 
 /*
 #arrow,

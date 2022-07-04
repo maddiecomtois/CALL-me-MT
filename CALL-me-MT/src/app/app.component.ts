@@ -25,6 +25,85 @@ export class AppComponent {
   
   translationPopover:any;
   popoverVisibility:string = "none"
+  
+  appitems = [
+    {
+      label: 'English',
+      items: [
+        {
+          label: 'Pride and Prejudice',
+          onSelected: ()=> {this.getText('english1.txt', 'FR')}
+        },
+        {
+          label: 'Alice’s Adventures in Wonderland',
+          onSelected: ()=> {this.getText('english2.txt', 'FR')}
+        },
+        {
+          label: 'The Great Gatsby',
+          onSelected: ()=> {this.getText('english3.txt', 'FR')}
+        }
+      ]
+    },
+    {
+      label: 'French',
+      items: [
+        {
+          label: 'Douze ans de séjour',
+          onSelected: ()=> {this.getText('french1.txt', 'EN-GB')}
+        },
+        {
+          label: 'Contes merveilleux',
+          onSelected: ()=> {this.getText('french2.txt', 'EN-GB')}
+        },
+        {
+          label: 'La femme française dans les temps modernes',
+          onSelected: ()=> {this.getText('french3.txt', 'EN-GB')}
+        }
+      ]
+    },
+    {
+      label: 'Spanish',
+      items: [
+        {
+          label: 'El amor, el dandysmo y la intriga',
+          onSelected: ()=> {this.getText('spanish1.txt', 'EN-GB')}
+        },
+        {
+          label: 'Velázquez en el museo del Prado',
+          onSelected: ()=> {this.getText('spanish2.txt', 'EN-GB')}
+        },
+        {
+          label: 'El tesoro misterioso',
+          onSelected: ()=> {this.getText('spanish3.txt', 'EN-GB')}
+        }
+      ]
+    },
+    {
+      label: 'German',
+      items: [
+        {
+          label: 'Der Tod in Venedig',
+          onSelected: ()=> {this.getText('german1.txt', 'EN-GB')}
+        },
+        {
+          label: 'Die Verwandlung',
+          onSelected: ()=> {this.getText('german2.txt', 'EN-GB')}
+        },
+        {
+          label: 'Effi Briest',
+          onSelected: ()=> {this.getText('german3.txt', 'EN-GB')}
+        }
+      ]
+    }
+  ];
+
+  config = {
+        paddingAtStart: true,
+        listBackgroundColor: '#c1daee',
+        fontColor: 'rgb(8, 54, 71)',
+        backgroundColor: '#c1daee',
+        selectedListFontColor: 'black',
+      };
 
   
   constructor(private ts:TranslateService, private http: HttpClient){}
@@ -84,7 +163,7 @@ export class AppComponent {
   
   translateText() {
     this.translatedText = "";
-    this.ts.translateDeepl(this.textToTranslate, this.targetLang).subscribe( res => {
+    this.ts.translateMicrosoft(this.textToTranslate, this.targetLang).subscribe( res => {
       console.log(res)
       this.translatedText = res;
     },
@@ -126,5 +205,9 @@ export class AppComponent {
     }
   }
   */
+  
+  test(item) {
+    console.log(item)
+  }
 
 }

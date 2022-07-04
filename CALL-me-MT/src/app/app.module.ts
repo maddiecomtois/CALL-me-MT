@@ -7,6 +7,15 @@ import { AppComponent } from './app.component';
 
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { NgMaterialMultilevelMenuModule, MultilevelMenuService } from 'ng-material-multilevel-menu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
+
+
 
 @NgModule({
   declarations: [
@@ -17,8 +26,13 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     HttpClientModule,
     NgbDropdownModule,
+    BrowserAnimationsModule,
+    NgMaterialMultilevelMenuModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [MultilevelMenuService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
