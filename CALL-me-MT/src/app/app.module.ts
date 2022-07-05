@@ -13,13 +13,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogContentComponent } from './dialog-content/dialog-content.component';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DialogContentComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     NgMaterialMultilevelMenuModule,
     MatToolbarModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [MultilevelMenuService],
   bootstrap: [AppComponent]

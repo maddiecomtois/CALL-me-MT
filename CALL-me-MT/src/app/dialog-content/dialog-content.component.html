@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Trinity College Dublin -- CALL-me MT Masters Dissertation</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>Background</h3>
+  <p>You are invited to participate in this study on machine translation and language learning, 
+    which aims to test if quick and easy access to translations enhances the reader’s experience.  
+    When reading in a foreign language, learners usually have to stop in the middle of a sentence 
+    to look up a word or phrase that they do not know.  This lack of vocabulary and start-stop process 
+    disrupts the ability to read fluently in a foreign language, which can be frustrating to the reader.  
+    Computer-Assisted Language Learning (CALL) can help foreign language learners in providing technology 
+    to enhance their learning experience.</p>
+
+  <h3>Instructions</h3>
+  <p>You are asked to spend at least five minutes reading public domain text in a foreign language of your 
+    choice on a web application, looking up words or phrases that are unfamiliar to you. After spending as 
+    much time as you like reading and translating the text, we ask you to fill out an anonymous survey about your experience.  
+    This survey should take no more than 15 minutes and is entirely anonymous.  When you come across a word or phrase that you do not know during your 
+    reading, you can click on the word or phrase to display a translation.  </p>
+    
+    <p> How to use the platform: </p>
+    
+    <ol>
+      <li> Select the language you are learning from the menu on the left side of the screen </li>
+      <li> Select a story from the available options provided in the submenu </li>
+      <li> Read as much of the story as you wish to improve your foreing langauge reading skills</li>
+      <li> If you come across a word or phrase you do not know, highlight the text with your mouse. A translation will be displayed above the text
+      when the mouse is released </li>
+      <li> Happy reading! </li>
+    </ol>
+
+  <h3>Informed Consent</h3>
+  <p>The research results will be published in a M.Sc. dissertation at Trinity College Dublin and shared nowhere else. By clicking the
+    "Agree" button I agree that I have read and signed the Informed Consent Form before proceeding with the study.</p>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close >Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Agree</button>
+</mat-dialog-actions>

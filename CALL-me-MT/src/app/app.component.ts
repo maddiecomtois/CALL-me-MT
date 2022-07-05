@@ -8,6 +8,8 @@ import { map } from 'rxjs/operators'
 import * as Popper from '@popperjs/core'
 import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow.js';
 import flip from '@popperjs/core/lib/modifiers/flip.js';
+import {MatDialog} from '@angular/material/dialog';
+import { DialogContentComponent } from './dialog-content/dialog-content.component'
 
 @Component({
   selector: 'app-root',
@@ -106,15 +108,28 @@ export class AppComponent {
       };
 
   
-  constructor(private ts:TranslateService, private http: HttpClient){}
+  constructor(private ts:TranslateService, private http: HttpClient, public dialog: MatDialog){}
   
   
   ngOnInit(): void {
+    this.openDialog();
     this.getUsageStats();
     this.textContent = <HTMLInputElement>document.getElementById("textContent");
     this.getText('english1.txt', 'FR');
       
   }
+  
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogContentComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(!result) {
+        window.top.location.reload(true);
+        window.top.close();
+      }
+    });
+  }
+  
   
   getUsageStats() {
     this.ts.getUsageStats().subscribe( res => {
