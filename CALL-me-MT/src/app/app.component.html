@@ -1,38 +1,57 @@
-<div class="page">
-  
-  <!-- Top bar -->
-  <mat-toolbar>
-    <span>CALL-me MT</span>
-  </mat-toolbar>
-  
+<mat-sidenav-container fullscreen>
 
-  <div class="contentContainer">
-
-    <div class="languageContainer">
-      <ng-material-multilevel-menu [configuration]='config' [items]='appitems'></ng-material-multilevel-menu>
-      <div> {{deeplPercentageLeft}} % of Deepl credit left </div>
-    </div>
+    <!-- Top bar -->
+    <mat-toolbar>
+      <span>CALL-me MT</span>
+    </mat-toolbar>
     
-    <!--<mat-spinner></mat-spinner>-->
+    <!-- Container for side menu and text content -->
+    <div class="contentContainer">
 
-    <div class="textContainer" (mouseup)="getSelectedText()">
-      <!--Text-->    
-      <mat-card>
-        <p class="textBox" *ngFor="let paragraph of textParagraphs"> {{paragraph}} </p>
-      </mat-card>
-
-      <!-- Translation popover -->
-      <div class="popoverContainer" [style.display]="popoverVisibility">
-        <div class="popover"> {{translatedText}} </div>
-        <!--<div id="arrow" data-popper-arrow></div>-->
+      <!-- Side Menu -->
+      <div class="languageContainer">
+        <ng-material-multilevel-menu [configuration]='config' [items]='appitems'></ng-material-multilevel-menu>
+        <div> {{deeplPercentageLeft}} % of Deepl credit left </div>
       </div>
       
-    </div>
-      
-  </div>
+      <!--<mat-spinner></mat-spinner>-->
 
-  <!-- Footer -->
-  <mat-toolbar>
-  </mat-toolbar>
+      <!-- Text Container -->
+      
+      <mat-card class="textContainer" (mouseup)="getSelectedText()">
+
+          <p class="textBox" *ngFor="let paragraph of textParagraphs"> {{paragraph}} </p>
+        
+          <div class="popoverContainer" [style.display]="popoverVisibility">
+            <div class="popover"> {{translatedText}} 
+              <!--<div id="arrow" data-popper-arrow></div>-->
+            </div>
+            
+          </div>
+
+      </mat-card>
+      
+      <!--
+      <div class="textContainer" (mouseup)="getSelectedText()">
   
-</div>
+        <mat-card class="mat-elevation-z8">
+          <p class="textBox" *ngFor="let paragraph of textParagraphs"> {{paragraph}} </p>
+          
+
+          <div class="popoverContainer" [style.display]="popoverVisibility">
+            <div class="popover"> {{translatedText}} 
+              <div id="arrow" data-popper-arrow></div>
+            </div>
+            
+          </div>
+        </mat-card>
+        
+      </div>
+            -->
+        
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" #footer></div>
+
+</mat-sidenav-container>

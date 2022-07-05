@@ -24,8 +24,6 @@ export class AppComponent {
   translatedText:string = '';
   deeplPercentageLeft:number = 0;
   targetLang:string = '';
-  
-  translationPopover:any;
   popoverVisibility:string = "none"
   
   appitems = [
@@ -112,7 +110,7 @@ export class AppComponent {
   
   
   ngOnInit(): void {
-    this.openDialog();
+    //this.openDialog();
     this.getUsageStats();
     this.textContent = <HTMLInputElement>document.getElementById("textContent");
     this.getText('english1.txt', 'FR');
@@ -166,9 +164,9 @@ export class AppComponent {
 
         // display translated text or hide if no text selected
         if (this.textToTranslate != "") {
-          this.translateText()
+          this.translateText();
+          this.displayTranslation(window.getSelection().getRangeAt(0));
           this.popoverVisibility = "block";
-          this.displayTranslation()
         }
         else {
           this.popoverVisibility = "none";
@@ -189,22 +187,21 @@ export class AppComponent {
     this.getUsageStats();
   }
   
-  displayTranslation() {
-    let selection = window.getSelection().getRangeAt(0);
-    this.translationPopover = document.querySelector('.popoverContainer'); 
+  displayTranslation(range) {
     
-    Popper.createPopper(selection, this.translationPopover, {
-        placement: 'top',
+    //document.selection.createRange().htmlText     // For getting entire text, not just selection?
+    
+    Popper.createPopper(range, document.querySelector('.popoverContainer'), {
+        placement: 'right',
         modifiers: [
           {
             name: 'offset',
             options: {
-              offset: [0, 8],
+              offset: [0, 10],
             },
           },
-          preventOverflow,
-          flip
-        ]
+        ],
+        strategy: 'fixed',
     });
     
   }
