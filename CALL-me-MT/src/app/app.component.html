@@ -14,11 +14,9 @@
         <div> {{deeplPercentageLeft}} % of Deepl credit left </div>
       </div>
       
-      <!--<mat-spinner *ngIf="loadingText"></mat-spinner>-->
-      <div *ngIf="loadingText"> ... Loading </div>
+      <div *ngIf="loadingText" class="loading textContainer"> ... Loading </div>
 
       <!-- Text Container -->
-      
       <mat-card *ngIf="!loadingText" class="textContainer mat-elevation-z8" (mouseup)="getSelectedText()">
 
           <p class="textBox" *ngFor="let paragraph of textParagraphs"> {{paragraph}} </p>
@@ -53,8 +51,11 @@
             -->
         
     </div>
+  
 
     <!-- Footer -->
-    <div class="footer" #footer></div>
+    <div class="footer" #footer>
+        <img class="logoImg" src="assets/logo_TCD.png"> 
+    </div>
 
 </mat-sidenav-container>

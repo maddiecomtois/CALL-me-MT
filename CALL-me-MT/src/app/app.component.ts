@@ -29,6 +29,40 @@ export class AppComponent {
   
   appitems = [
     {
+      label: 'Chinese', // https://cti.lib.virginia.edu/cll/chinese_literature/malau/TCStoc.htm
+      items: [
+        {
+          label: 'Old Servant Hsu',
+          onSelected: ()=> {this.getText('chinese1.txt', 'EN-GB')}
+        },
+        {
+          label: 'The Jest That Leads to Disaster',
+          onSelected: ()=> {this.getText('chinese2.txt', 'EN-GB')}
+        },
+        {
+          label: 'The Oil Peddler Courts the Courtesan',
+          onSelected: ()=> {this.getText('chinese3.txt', 'EN-GB')}
+        }
+      ]
+    },
+    {
+      label: 'Czech',
+      items: [
+        {
+          label: 'Štafeta',
+          onSelected: ()=> {this.getText('czech1.txt', 'EN-GB')}
+        },
+        {
+          label: 'Blesky nad Beskydami',
+          onSelected: ()=> {this.getText('czech2.txt', 'EN-GB')}
+        },
+        {
+          label: 'Zápisky z mrtvého domu',
+          onSelected: ()=> {this.getText('czech3.txt', 'EN-GB')}
+        }
+      ]
+    },
+    {
       label: 'English',
       items: [
         {
@@ -59,23 +93,6 @@ export class AppComponent {
         {
           label: 'La femme française dans les temps modernes',
           onSelected: ()=> {this.getText('french3.txt', 'EN-GB')}
-        }
-      ]
-    },
-    {
-      label: 'Spanish',
-      items: [
-        {
-          label: 'El amor, el dandysmo y la intriga',
-          onSelected: ()=> {this.getText('spanish1.txt', 'EN-GB')}
-        },
-        {
-          label: 'Velázquez en el museo del Prado',
-          onSelected: ()=> {this.getText('spanish2.txt', 'EN-GB')}
-        },
-        {
-          label: 'El tesoro misterioso',
-          onSelected: ()=> {this.getText('spanish3.txt', 'EN-GB')}
         }
       ]
     },
@@ -114,6 +131,23 @@ export class AppComponent {
       ]
     },
     {
+      label: 'Japanese',
+      items: [
+        {
+          label: 'Kesshouki',
+          onSelected: ()=> {this.getText('japanese1.txt', 'EN-GB')}
+        },
+        {
+          label: 'Amerika Monogatari',
+          onSelected: ()=> {this.getText('japanese2.txt', 'EN-GB')}
+        },
+        {
+          label: 'Horadanshaku tabimiyage',
+          onSelected: ()=> {this.getText('japanese3.txt', 'EN-GB')}
+        }
+      ]
+    },
+    {
       label: 'Portuguese',
       items: [
         {
@@ -131,53 +165,19 @@ export class AppComponent {
       ]
     },
     {
-      label: 'Chinese', // https://cti.lib.virginia.edu/cll/chinese_literature/malau/TCStoc.htm
+      label: 'Spanish',
       items: [
         {
-          label: 'Old Servant Hsu',
-          onSelected: ()=> {this.getText('chinese1.txt', 'EN-GB')}
+          label: 'El amor, el dandysmo y la intriga',
+          onSelected: ()=> {this.getText('spanish1.txt', 'EN-GB')}
         },
         {
-          label: 'The Jest That Leads to Disaster',
-          onSelected: ()=> {this.getText('chinese2.txt', 'EN-GB')}
+          label: 'Velázquez en el museo del Prado',
+          onSelected: ()=> {this.getText('spanish2.txt', 'EN-GB')}
         },
         {
-          label: 'The Oil Peddler Courts the Courtesan',
-          onSelected: ()=> {this.getText('chinese3.txt', 'EN-GB')}
-        }
-      ]
-    },
-    {
-      label: 'Czech',
-      items: [
-        {
-          label: 'Štafeta',
-          onSelected: ()=> {this.getText('czech1.txt', 'EN-GB')}
-        },
-        {
-          label: 'Blesky nad Beskydami',
-          onSelected: ()=> {this.getText('czech2.txt', 'EN-GB')}
-        },
-        {
-          label: 'Zápisky z mrtvého domu',
-          onSelected: ()=> {this.getText('czech3.txt', 'EN-GB')}
-        }
-      ]
-    },
-    {
-      label: 'Japanese',
-      items: [
-        {
-          label: 'Kesshouki',
-          onSelected: ()=> {this.getText('japanese1.txt', 'EN-GB')}
-        },
-        {
-          label: 'Amerika Monogatari',
-          onSelected: ()=> {this.getText('japanese2.txt', 'EN-GB')}
-        },
-        {
-          label: 'Horadanshaku tabimiyage',
-          onSelected: ()=> {this.getText('japanese3.txt', 'EN-GB')}
+          label: 'El tesoro misterioso',
+          onSelected: ()=> {this.getText('spanish3.txt', 'EN-GB')}
         }
       ]
     }
@@ -196,7 +196,7 @@ export class AppComponent {
   
   
   ngOnInit(): void {
-    //this.openDialog();
+    this.openDialog();
     this.getUsageStats();
     this.textContent = <HTMLInputElement>document.getElementById("textContent");
     this.getText('english1.txt', 'FR');
@@ -239,13 +239,7 @@ export class AppComponent {
 
   }
   
-  getSelectedText(){
-    //let text:string = this.textContent.innerHTML;
-    //let indexStart = this.textContent.selectionStart!;
-    //let indexEnd = this.textContent.selectionEnd!;
-    //this.textToTranslate = text.substring(indexStart, indexEnd);
-    //this.textToTranslate = this.textToTranslate.replace(/[“”«»]+/g, '');
-    
+  getSelectedText(){    
     if (window.getSelection) {
         // get selected text
         this.textToTranslate = window.getSelection().toString();
@@ -294,22 +288,6 @@ export class AppComponent {
         strategy: 'fixed',
     });
     
-  }
-  
-/*
-  getTheWord(selectionStart:any, value:any){
-    let arr = value.split(" ");
-    let sum = 0
-    for (let i = 0; i < arr.length; i++) {
-      sum += arr[i].length + 1
-      if (sum > selectionStart) return arr[i]
-
-    }
-  }
-  */
-  
-  test(item) {
-    console.log(item)
   }
 
 }
