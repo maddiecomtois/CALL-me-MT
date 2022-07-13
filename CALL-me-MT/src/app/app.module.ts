@@ -17,6 +17,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogContentComponent } from './dialog-content/dialog-content.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon';
+
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatButtonModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatIconModule
   ],
   providers: [MultilevelMenuService],
   bootstrap: [AppComponent]

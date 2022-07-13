@@ -25,6 +25,7 @@ export class AppComponent {
   deeplPercentageLeft:number = 0;
   targetLang:string = '';
   popoverVisibility:string = "none"
+  loadingText:boolean = false;
   
   appitems = [
     {
@@ -94,6 +95,91 @@ export class AppComponent {
           onSelected: ()=> {this.getText('german3.txt', 'EN-GB')}
         }
       ]
+    },
+    {
+      label: 'Italian',
+      items: [
+        {
+          label: 'Le Avventure di Pinocchio',
+          onSelected: ()=> {this.getText('italian1.txt', 'EN-GB')}
+        },
+        {
+          label: 'L’Amore che torna',
+          onSelected: ()=> {this.getText('italian2.txt', 'EN-GB')}
+        },
+        {
+          label: 'Forse Che Si Forse Che No',
+          onSelected: ()=> {this.getText('italian3.txt', 'EN-GB')}
+        }
+      ]
+    },
+    {
+      label: 'Portuguese',
+      items: [
+        {
+          label: 'Historia Alegre de Portugal',
+          onSelected: ()=> {this.getText('portuguese1.txt', 'EN-GB')}
+        },
+        {
+          label: 'A Chave Do Enigma',
+          onSelected: ()=> {this.getText('portuguese2.txt', 'EN-GB')}
+        },
+        {
+          label: 'Aquela família',
+          onSelected: ()=> {this.getText('portuguese3.txt', 'EN-GB')}
+        }
+      ]
+    },
+    {
+      label: 'Chinese', // https://cti.lib.virginia.edu/cll/chinese_literature/malau/TCStoc.htm
+      items: [
+        {
+          label: 'Old Servant Hsu',
+          onSelected: ()=> {this.getText('chinese1.txt', 'EN-GB')}
+        },
+        {
+          label: 'The Jest That Leads to Disaster',
+          onSelected: ()=> {this.getText('chinese2.txt', 'EN-GB')}
+        },
+        {
+          label: 'The Oil Peddler Courts the Courtesan',
+          onSelected: ()=> {this.getText('chinese3.txt', 'EN-GB')}
+        }
+      ]
+    },
+    {
+      label: 'Czech',
+      items: [
+        {
+          label: 'Štafeta',
+          onSelected: ()=> {this.getText('czech1.txt', 'EN-GB')}
+        },
+        {
+          label: 'Blesky nad Beskydami',
+          onSelected: ()=> {this.getText('czech2.txt', 'EN-GB')}
+        },
+        {
+          label: 'Zápisky z mrtvého domu',
+          onSelected: ()=> {this.getText('czech3.txt', 'EN-GB')}
+        }
+      ]
+    },
+    {
+      label: 'Japanese',
+      items: [
+        {
+          label: 'Kesshouki',
+          onSelected: ()=> {this.getText('japanese1.txt', 'EN-GB')}
+        },
+        {
+          label: 'Amerika Monogatari',
+          onSelected: ()=> {this.getText('japanese2.txt', 'EN-GB')}
+        },
+        {
+          label: 'Horadanshaku tabimiyage',
+          onSelected: ()=> {this.getText('japanese3.txt', 'EN-GB')}
+        }
+      ]
     }
   ];
 
@@ -140,13 +226,17 @@ export class AppComponent {
   }
   
   async getText(text:string, langCode:string) {
+    console.log("Loading text")
+    this.loadingText = true;
     await this.http.get(`../assets/${text}`, {responseType: 'text' as 'json'}).subscribe((data: any) => {
       //this.textParagraphs = data.split(/(?:\r?\n)+/);
       this.textParagraphs = data.split('\n');
       //this.textContent.innerHTML = data;
+      this.loadingText = false;
+      console.log("Done loading text")
     });
     this.targetLang = langCode;
-    
+
   }
   
   getSelectedText(){

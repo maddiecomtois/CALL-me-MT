@@ -11,6 +11,7 @@
 .languageContainer {
   padding-right: 5%;
   width:30%;
+  overflow-y: scroll;
 }
 
 .textContainer {
@@ -40,6 +41,18 @@ mat-toolbar {
 .textBox {
   width:100%;
   padding:5px;
+}
+
+.helpIcon {
+  position: absolute;
+  bottom: 60px;
+  right: 50px;
+  color:#c1daee;
+  font-size: 30px;
+}
+
+.helpIcon:hover{
+  cursor: pointer;
 }
 
 /*
