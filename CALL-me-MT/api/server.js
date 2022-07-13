@@ -15,25 +15,24 @@ const port = 8000
 app.use(bodyParser.json());
 app.use(cors());
 
-// Microsoft credentials
-let key = "15a71e29429546aab3533e645fb85c38";
-let endpoint = "https://api.cognitive.microsofttranslator.com";
+// API credentials
+const MICROSOFT_CREDENTIALS = JSON.parse(process.env.MICROSOFT_CREDENTIALS)
+const DEEPL_CREDENTIALS = JSON.parse(process.env.DEEPL_CREDENTIALS)
+const GOOGLE_CREDENTIALS = JSON.parse(process.env.CREDENTIALS)
 
-
-// Google credentials
-const CREDENTIALS = JSON.parse(process.env.CREDENTIALS)
 const translate = new Translate({
-  credentials: CREDENTIALS,
-  projectId: CREDENTIALS.project_id
+  credentials: GOOGLE_CREDENTIALS,
+  projectId: GOOGLE_CREDENTIALS.project_id
 })
+
 
 app.listen(port, () => {
   console.log(`Server started! Listening on port ${port}`)
 });
 
-/* Get usage stats to make sure there are enough Deepl API credits */
+/* Get Deepl usage stats to make sure there are enough API credits */
 app.get("/getDeepLUsageStats", function (req, res) {
-  const url = "https://api-free.deepl.com/v2/usage?auth_key=a39ddacd-0d09-96eb-d7a1-e92a670fcd32:fx";
+  const url = "https://api-free.deepl.com/v2/usage?auth_key=" + DEEPL_CREDENTIALS.key;
   https.get(url, (response) => {
       if (response.statusCode === 200) {
           response.on("data", (data) => {
@@ -49,7 +48,7 @@ app.get("/getDeepLUsageStats", function (req, res) {
 /* Translate text using Deepl API */
 app.post("/translateDeepl", function (req, res) {
   let textToTranslate = req.body.textToTranslate;
-  const url = 'https://api-free.deepl.com/v2/translate?auth_key=a39ddacd-0d09-96eb-d7a1-e92a670fcd32:fx&'
+  const url = 'https://api-free.deepl.com/v2/translate?auth_key=' + DEEPL_CREDENTIALS.key;
   
   let form = {
     text: textToTranslate,
@@ -95,7 +94,7 @@ app.post("/translateMicrosoft", function (req, res) {
         'to': [req.body.targetLanguage]
       },
       headers: {
-        'Ocp-Apim-Subscription-Key': '15a71e29429546aab3533e645fb85c38',
+        'Ocp-Apim-Subscription-Key': MICROSOFT_CREDENTIALS.key,
         'Ocp-Apim-Subscription-Region': 'westeurope',
         'Content-type': 'application/json',
         'X-ClientTraceId': uuidv4().toString()
