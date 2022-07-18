@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require("body-parser");
+const path = require('path');
 const cors = require('cors');
 const https = require('https')
 const request = require('request');
@@ -10,10 +11,15 @@ const {Translate} = require('@google-cloud/translate').v2;
 require('dotenv').config()
 
 const app = express()
-const port = 8000
+const port = process.env.PORT || 8080;
 
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use(express.static('public'));
+  app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'public/index.html'));
+})
 
 // API credentials
 const MICROSOFT_CREDENTIALS = JSON.parse(process.env.MICROSOFT_CREDENTIALS)

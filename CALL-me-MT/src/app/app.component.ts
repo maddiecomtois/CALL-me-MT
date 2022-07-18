@@ -260,7 +260,7 @@ export class AppComponent {
   
   translateText() {
     this.translatedText = "";
-    this.ts.translateMicrosoft(this.textToTranslate, this.targetLang).subscribe( res => {
+    this.ts.translateDeepl(this.textToTranslate, this.targetLang).subscribe( res => {
       console.log(res)
       this.translatedText = res;
     },

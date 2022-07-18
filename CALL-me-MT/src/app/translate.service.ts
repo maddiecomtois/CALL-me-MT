@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TranslateService {
+  
+  baseURL = "http://localhost:8000/";
 
   constructor(private http: HttpClient) { }
   
@@ -16,19 +18,19 @@ export class TranslateService {
   translateDeepl(text:string, targetLang:string):Observable<any> {
     console.log("Text to translate: ", text);
     console.log("Target language: ", targetLang)
-    return this.http.post('http://localhost:8000/translateDeepl', {textToTranslate:text, targetLanguage:targetLang})
+    return this.http.post('translateDeepl', {textToTranslate:text, targetLanguage:targetLang})
   }
   
   translateMicrosoft(text:string, targetLang:string):Observable<any> {
     console.log("Text to translate: ", text);
     console.log("Target language: ", targetLang)
-    return this.http.post('http://localhost:8000/translateMicrosoft', {textToTranslate:text, targetLanguage:targetLang})
+    return this.http.post('translateMicrosoft', {textToTranslate:text, targetLanguage:targetLang})
   }
   
   translateGoogle(text:string, targetLang:string):Observable<any> {
     console.log("Text to translate: ", text);
     console.log("Target language: ", targetLang)
-    return this.http.post('http://localhost:8000/translateGoogle', {textToTranslate:text, targetLanguage:targetLang})
+    return this.http.post('translateGoogle', {textToTranslate:text, targetLanguage:targetLang})
   }
   
 }
