@@ -195,6 +195,7 @@ export class AppComponent {
   constructor(private ts:TranslateService, private http: HttpClient, public dialog: MatDialog){}
   
   
+  // called on initialisation, gets consent and loads first story 
   ngOnInit(): void {
     this.openDialog();
     this.getUsageStats();
@@ -203,6 +204,7 @@ export class AppComponent {
       
   }
   
+  // open the consent form 
   openDialog() {
     const dialogRef = this.dialog.open(DialogContentComponent);
 
@@ -214,7 +216,7 @@ export class AppComponent {
     });
   }
   
-  
+  // get API useage stats for Deepl
   getUsageStats() {
     this.ts.getUsageStats().subscribe( res => {
       console.log(res)
@@ -225,13 +227,12 @@ export class AppComponent {
     
   }
   
+  // load in stories and split into paragraphs
   async getText(text:string, langCode:string) {
     console.log("Loading text")
     this.loadingText = true;
     await this.http.get(`../assets/${text}`, {responseType: 'text' as 'json'}).subscribe((data: any) => {
-      //this.textParagraphs = data.split(/(?:\r?\n)+/);
       this.textParagraphs = data.split('\n');
-      //this.textContent.innerHTML = data;
       this.loadingText = false;
       console.log("Done loading text")
     });
@@ -239,6 +240,7 @@ export class AppComponent {
 
   }
   
+  // get highlighted text
   getSelectedText(){    
     if (window.getSelection) {
         // get selected text
@@ -258,6 +260,7 @@ export class AppComponent {
       }
   }
   
+  // send highlighted text to translator
   translateText() {
     this.translatedText = "";
     this.ts.translateDeepl(this.textToTranslate, this.targetLang).subscribe( res => {
@@ -271,10 +274,8 @@ export class AppComponent {
     this.getUsageStats();
   }
   
-  displayTranslation(range) {
-    
-    //document.selection.createRange().htmlText     // For getting entire text, not just selection?
-    
+  // display the translation as a popover
+  displayTranslation(range) {    
     Popper.createPopper(range, document.querySelector('.popoverContainer'), {
         placement: 'right',
         modifiers: [
@@ -287,7 +288,6 @@ export class AppComponent {
         ],
         strategy: 'fixed',
     });
-    
   }
 
 }

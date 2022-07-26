@@ -77,6 +77,26 @@ mat-toolbar {
         border-radius: 4px;
 }
 
+.surveyButton {
+        background-color: #c1daee;
+        border: none;
+        color: rgb(8, 54, 71);
+        height:50px;
+        padding:10px;
+        /*padding: 20px 60px;*/
+        text-align: left;
+        text-decoration: none;
+        position: absolute;
+        /*display: inline-block;*/
+        font-size: 20px;
+        cursor: pointer;
+        right: 80px;
+}
+
+.surveyButton:hover{
+  color: white;
+}
+
 
 #arrow,
 #arrow::before {

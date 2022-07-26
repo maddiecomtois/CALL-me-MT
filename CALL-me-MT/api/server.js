@@ -11,15 +11,23 @@ const {Translate} = require('@google-cloud/translate').v2;
 require('dotenv').config()
 
 const app = express()
-const port = process.env.PORT || 8080;
+
+// for live serving
+//const port = process.env.PORT || 8080;
+
+// for local serving
+const port = 8000;
 
 app.use(bodyParser.json());
 app.use(cors());
 
+// For live serving 
+/*
 app.use(express.static('public'));
   app.get('*',(req,res)=>{
     res.sendFile(path.join(__dirname,'public/index.html'));
 })
+*/
 
 // API credentials
 const MICROSOFT_CREDENTIALS = JSON.parse(process.env.MICROSOFT_CREDENTIALS)
@@ -142,7 +150,7 @@ const translateGoogle = async (text, targetLanguage) => {
     let [response] = await translate.translate(text, targetLanguage);
     return response;
   } catch (error) {
-    console.log(`Google Translate Error --> ${error}`);
+    console.log(`Google Translate Error: ${error}`);
     return 0;
   }
 }
