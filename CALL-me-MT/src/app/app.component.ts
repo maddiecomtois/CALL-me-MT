@@ -265,7 +265,13 @@ export class AppComponent {
     this.translatedText = "";
     this.ts.translateDeepl(this.textToTranslate, this.targetLang).subscribe( res => {
       console.log(res)
-      this.translatedText = res;
+      if(res["err"]) {
+        this.translatedText = "Error"
+      }
+      else {
+        this.translatedText = res;
+      }
+      
     },
     err => {
           console.log(err.message)

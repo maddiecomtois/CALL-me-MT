@@ -89,8 +89,14 @@ app.post("/translateDeepl", function (req, res) {
     }
     if(body) {
       let parsedBody = JSON.parse(body)
-      let translation = parsedBody["translations"][0]["text"]
-      res.json(translation);
+      if(parsedBody["translations"]) {
+        let translation = parsedBody["translations"][0]["text"]
+        res.json(translation);
+      }
+      else {
+        res.json({"err":"No translations"});
+      }
+      
     } else {
       res.json(err);
     }
