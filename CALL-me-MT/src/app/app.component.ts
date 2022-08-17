@@ -3,12 +3,10 @@ import { TranslateService } from './translate.service';
 import * as deepl from 'deepl-node';
 import { HttpClient } from '@angular/common/http';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
-import { map } from 'rxjs/operators'
-
 import * as Popper from '@popperjs/core'
 import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow.js';
 import flip from '@popperjs/core/lib/modifiers/flip.js';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogContentComponent } from './dialog-content/dialog-content.component'
 
 @Component({
@@ -18,7 +16,6 @@ import { DialogContentComponent } from './dialog-content/dialog-content.componen
 })
 export class AppComponent {
   title = 'CALL-me-MT';
-  textContent:any;
   textParagraphs:string[];
   textToTranslate:string = '';
   translatedText:string = '';
@@ -27,9 +24,10 @@ export class AppComponent {
   popoverVisibility:string = "none"
   loadingText:boolean = false;
   
+  // data for all the available stories in the side menu
   appitems = [
     {
-      label: 'Chinese', // https://cti.lib.virginia.edu/cll/chinese_literature/malau/TCStoc.htm
+      label: 'Chinese',
       items: [
         {
           label: 'Old Servant Hsu',
@@ -183,6 +181,7 @@ export class AppComponent {
     }
   ];
 
+  // configurations for the side menu
   config = {
         paddingAtStart: true,
         listBackgroundColor: '#c1daee',
@@ -198,16 +197,15 @@ export class AppComponent {
   // called on initialisation, gets consent and loads first story 
   ngOnInit(): void {
     this.openDialog();
-    this.getUsageStats();
-    this.textContent = <HTMLInputElement>document.getElementById("textContent");
+    //this.getUsageStats();
     this.getText('english1.txt', 'FR');
-      
   }
   
   // open the consent form 
   openDialog() {
     const dialogRef = this.dialog.open(DialogContentComponent);
 
+    // reload the consent window if user does not click on agree
     dialogRef.afterClosed().subscribe(result => {
       if(!result) {
         window.top.location.reload(true);
@@ -216,7 +214,7 @@ export class AppComponent {
     });
   }
   
-  // get API useage stats for Deepl
+  // get API useage stats for DeepL
   getUsageStats() {
     this.ts.getUsageStats().subscribe( res => {
       console.log(res)
@@ -224,7 +222,6 @@ export class AppComponent {
       let character_limit = res.data.character_limit
       this.deeplPercentageLeft = 100 - ((res.data.character_count / res.data.character_limit) * 100)
     });
-    
   }
   
   // load in stories and split into paragraphs
@@ -237,7 +234,6 @@ export class AppComponent {
       console.log("Done loading text")
     });
     this.targetLang = langCode;
-
   }
   
   // get highlighted text
@@ -277,7 +273,7 @@ export class AppComponent {
           console.log(err.message)
         },
     );
-    this.getUsageStats();
+    //this.getUsageStats();
   }
   
   // display the translation as a popover

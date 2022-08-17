@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 export class TranslateService {
   
   // local serving
-  baseURL = "http://localhost:8000/";
+  //baseURL = "http://localhost:8000/";
   
   // live serving
-  //baseURL = "";
+  baseURL = "";
 
   constructor(private http: HttpClient) { }
   

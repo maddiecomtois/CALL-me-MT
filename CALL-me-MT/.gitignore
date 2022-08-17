@@ -47,3 +47,6 @@ testem.log
 Thumbs.db
 
 .env
+
+../TranslatorAnalysis/.idea
+../docs

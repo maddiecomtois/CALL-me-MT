@@ -13,21 +13,20 @@ require('dotenv').config()
 const app = express()
 
 // for live serving
-//const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 
 // for local serving
-const port = 8000;
+//const port = 8000;
 
 app.use(bodyParser.json());
 app.use(cors());
 
 // For live serving 
-/*
 app.use(express.static('public'));
   app.get('*',(req,res)=>{
     res.sendFile(path.join(__dirname,'public/index.html'));
 })
-*/
+
 
 // API credentials
 const MICROSOFT_CREDENTIALS = JSON.parse(process.env.MICROSOFT_CREDENTIALS)
@@ -46,10 +45,10 @@ app.listen(port, () => {
 
 /* Get Deepl usage stats to make sure there are enough API credits */
 app.get("/getDeepLUsageStats", function (req, res) {
-  const url = "https://api-free.deepl.com/v2/usage?auth_key=" + DEEPL_CREDENTIALS.key;
+  const url = "https://api.deepl.com/v2/usage?auth_key=" + DEEPL_CREDENTIALS.key;
   https.get(url, (response) => {
       if (response.statusCode === 200) {
-          response.on("data", (data) => {
+          response.on("data", (data) => {    
               res.json({data: JSON.parse(data)});
             })
       }
@@ -62,7 +61,7 @@ app.get("/getDeepLUsageStats", function (req, res) {
 /* Translate text using Deepl API */
 app.post("/translateDeepl", function (req, res) {
   let textToTranslate = req.body.textToTranslate;
-  const url = 'https://api-free.deepl.com/v2/translate?auth_key=' + DEEPL_CREDENTIALS.key;
+  const url = 'https://api.deepl.com/v2/translate?auth_key=' + DEEPL_CREDENTIALS.key;
   
   let form = {
     text: textToTranslate,
@@ -74,7 +73,7 @@ app.post("/translateDeepl", function (req, res) {
   
   request({
     headers: {
-      'Host' : 'api-free.deepl.com',
+      'Host' : 'api.deepl.com',
       'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Length': contentLength,
       'Accept': '*/*'
@@ -156,7 +155,7 @@ const translateGoogle = async (text, targetLanguage) => {
     let [response] = await translate.translate(text, targetLanguage);
     return response;
   } catch (error) {
-    console.log(`Google Translate Error: ${error}`);
+    console.log('Error: ', error);
     return 0;
   }
 }

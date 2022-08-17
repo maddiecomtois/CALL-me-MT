@@ -22,16 +22,15 @@
           <p class="textBox" *ngFor="let paragraph of textParagraphs"> {{paragraph}} </p>
         
           <div class="popoverContainer" [style.display]="popoverVisibility">
-            <div class="popover"> {{translatedText}} 
-              <!--<div id="arrow" data-popper-arrow></div>-->
-            </div>
+            <div class="popover"> {{translatedText}} </div>
           </div>
 
       </mat-card>
       
+        <!-- Survey and Help buttons -->
       <a class="surveyButton" href="https://forms.gle/Q6cmNjFZnWFqwdtC8" target="_blank"> Survey <mat-icon>launch</mat-icon></a>
-      
       <mat-icon class="helpIcon" (click)="openDialog()">help</mat-icon>     
+      
     </div>
   
 
